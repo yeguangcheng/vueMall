@@ -25,9 +25,7 @@ __注:为了更好的体验,需要自己注册一个账号__
 
     IDE: Visual Studio Code
     框架: Vue2.0
-    技术栈: vuex 、vue-router 、vue-cli 、ES6 、flexible.js 、axios
-    打包工具: webpack3.0
-    包管理工具: npm
+    技术栈: vuex 、vue-router 、vue-cli 、ES6 、flexible.js 、axios、 webpack3.0
 
 后端部分:
 
@@ -36,7 +34,6 @@ __注:为了更好的体验,需要自己注册一个账号__
     数据库: MongoDB / mongoose
     数据库管理: Robo 3T
     数据加密: md5
-    包管理工具: npm
 
 
 ## 关于开发环境
