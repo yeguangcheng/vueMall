@@ -160,7 +160,8 @@ vueMall目录下
 │   │   ├── store.js                            // vuex配置
 │   ├── App.vue                                 // 页面入口文件
 │   ├── main.js                                 // 程序入口文件
-├── index.html                                  // 入口html文件
+├── static                                      // 外部静态资源
+├── index.html                                  // 入口html文件
 .
 
 ```
