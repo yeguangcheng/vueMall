@@ -1,79 +1,106 @@
-# 做个锤子
+# Vue 简易手机商城
 
-## 前言
+## 简介
 
-个人一直想尝试用vue与node结合，做一个全栈电商型的网站，最后选择了锤子手机商城，这个项目从0开发到部署前前后后大概花了一个多月的时间，涉及登录、商品展示、购物车、下单等等，是一个非常完整的流程。其中交易的逻辑也比较复杂，所以可能存在一些细节问题(页面美观度就请放过我....)，此后都会慢慢修复.
+自从接触了NodeJs之后，一直想结合Vue做一个完整的前端 + 后端商城，原本计划是有移动端、PC端以及管理后台，采用前后端完全分离开发，但是一系列开发下来，发现想完成这个计划是一个不小的工程，其中出现很多意想不到的问题，同时也在不断的学习成长，奈何时间有限，目前就只开发了移动端，以及部分后台(只有接口和数据...)，以后有时间会逐渐完善
 
-锤子商城的技术栈是 __Angular__，罗永浩的产品，感觉还是挺简洁美观.页面商品数据是通过爬虫抓取然后写入数据库的.
-__注: 项目数据与锤子商品数据并无关系,并不是通过proxy代理请求的锤子商城接口__
+## 效果演示
 
-## 技术栈
+[Vue手机商城](114.67.236.62) （请使用手机打开，并不是一个pc端项目 ~~~）
 
-vue2 + vuex + vue-router + webpack + ES6 + axios + sass + flex + svg + node + mongoDB
+__注:为了更好的体验,需要自己注册一个账号__
 
-## 关于接口数据
+为了方便演示，这里提供了两个账号.当然可能存在多个用户同时操作一个账号.
 
-接口项目地址   [mall-api](https://github.com/yucccc/mall-api)  使用的是 node + mongodb
+```txt
+ 账号: admin  密码: 123456
+ 账号: root 密码: 123456
+```
 
-商品数据通过爬虫抓取写入数据库 (eventproxy + superagent)，因为锤子手机的数据结构十分复杂，所以在首页热门部分通过转发包装简化了数据，__如果你发现部分商品不见了，有可能是锤子手机改变了数据结构__. 正常情况下不会存在这种问题，大可放心.
+## 所使用的技术栈
 
-如果想要做个人项目却苦于没有数据,也可请求该项目的接口(后期有时间会把文档补上)，或者自己clone项目运行
+前端部分:
 
-## 关于部署
+    IDE: Visual Studio Code
+    框架: Vue2.0
+    生态插件: vuex 、vue-router 、vue-cli
+    主要插件: axios 、font-awesome 、vue-infinite-loading(滚动加载) 、vue-awesome-swiper(vue版swiper) 、flexible.js(自适应布局) 、 postcss(css转换) 、eslint(代码风格检查) 、babel(ES6转换)
+    打包工具: webpack3.0
+    包管理工具: npm
 
-使用 nginx 做反向代理，解决跨域问题.
+后端部分:
 
-1. 先在服务器安装 Nginx.
-2. 上传nodejs代码.
-- 把上传通过各种方式(命令行或者ftp)上传到服务器 进入目录下安装node依赖(与本地开发并无区别)
-- 使用pm2启动 此时会打开一个端口 假设 3333
-- 此时node已运行在服务端
-3. 将打包后的前端静态文件dist目录上传到服务器
-4. 配置方向代理
-- 找到Nginx配置文件，如果不知道在哪,可以上百度搜一下有命令提示
-- 一般默认是在 ``/usr/local/nginx/conf/nginx.conf``
-- 修改配置 找到 server 如图
+    语言环境: NodeJs
+    框架: express
+    数据库: MongoDB / mongoose
+    数据库管理: Robo 3T
+    数据加密: md5
+    包管理工具: npm
+
+## 关于开发环境
+
+前端部分采用eslint的standard风格检查，如果报错请注意是否有多余的空格、换行、分号、变量，或者使用了双引号、没有加空格
+
+跨域问题，在 config/index.js 可以修改proxyTable中的地址，使用代理来连接接口
+
+## 运行项目
+
+#### 数据库
+
+    1、本地已安装MongoDB
+    2、新建库 vueMall
+    3、新建两个表分别名为 users 和 goods 存放用户数据和产品数据
+    4、分别导入根目录下json文件夹里的数据
+    5、启动数据库
+
+    PS：由于篇幅过长，方法请自行百度，谢谢！
 
 ![nginx配置](./demo/WX20180207-154803@2x.png)
 
-## 项目运行
+#### 后台接口
 
+把整个项目clone到本地
 ```shell
-git clone https://github.com/yucccc/vue-mall.git
+    git clone https://github.com/yeguangcheng/vueMall.git
+```
+在vueMall - service目录下安装依赖包(由于文件不多放在了一起，但是依赖是分开的，可以单独运行)
+```shell
+    cd vueMall
+    cd service
+    npm install
+```
+在service/mongodb/db.js下检查数据库地址是否一致，然后启动服务器
+```shell
+    node service.js
+```
 
-cd vue-mall
+#### 前端
 
-cnpm i
+回到vueMall目录，安装依赖包
+```shell
+    cd ../
+    npm install
+```
+在config/index.js 下检查proxyTable中的地址和端口是否和服务器一致，然后启动开发环境
+```shell
+    npm run dev
+```
 
-npm run dev
+## 部署生产环境
 
-// 如果运行出现代理错误 请确保 config 文件下 index.js proxyTable代理正确
-
-// 直接运行代理应为
-http://mall.yucccc.com:3333
-
-// 通过运行node-api请求本地api代理应为
-http://127.0.0.1:3333
-
+vueMall目录下
+```shell
+    npm run build
+```
+打包的文件在vueMall/dist下，复制到service/data目录下，打开地址
+```shell
+    http://localhost:3000/  //服务器的地址，不用输多余路由，什么index.html是不用的
 ```
 
 ## 说明
 
 - 如果对您有帮助，您可以点右上角 "Star" 支持一下 十分感谢!
 - 如有问题请直接在 Issues 中提，或者您发现问题并有非常好的解决方案，欢迎 PR
-
-## 效果演示
-
-[锤子商城demo](http://mall.yucccc.com/) （请使用PC打开，并不是一个移动端项目 ~~~）
-
-__注:为了更好的体验,需要自己注册一个账号,账号密码随意.__
-
-为了方便演示，这里提供了两个账号.当然可能存在多个用户同时操作一个账号.
-
-```txt
- 账号: admin  密码: admin
- 账号: admin1 密码: 123
-```
 
 ## 目标功能
 
@@ -88,50 +115,55 @@ __注:为了更好的体验,需要自己注册一个账号,账号密码随意.__
 - [x] 订单列表
 - [x] 更换头像 -- 头像上传到七牛云,由于免费的七牛云空间有限,希望各位大佬不要搞我..
 
-## 续
-
-> 更多的功能后期还会陆续的补上.
-> 更多的细节会陆续修复.代码会陆续优化.
-> 秉着学习的态度,感谢大家.
-
-## 项目布局
+## 项目目录
 
 ```txt
 .
 ├── build                                       // webpack配置文件
-├── config                                      // 项目打包路径
-├── dist                                        // 打包文件
-├── src                                         // 源码目录
-│   ├── api                                     // 请求接口
-│   ├── common                                  // 公共组件
+├── config                                      // webpack配置文件
+├── dist                                        // 打包文件目录
+├── service                                     // 服务器文件
+│   ├── data                                    // 静态资源管理
+│   ├── mongodb                                 // 数据库配置
+│   │   └── db.js                               // 数据库基本配置
+│   │   └── goodsListModel.js                   // 产品数据模型
+│   │   └── user.js                             // 修改数据函数
+│   │   └── userModel.js                        // 用户数据模型
+│   ├── router                                  // 路由配置
+│   │   └── goods.js                            // 修改产品接口
+│   │   └── users.js                            // 修改用户接口
+│   ├── util                                    // 公共库
+│   │   └── index.js                            // 公共方法
+│   ├── package.json                            // 依赖包管理
+│   ├── service.js                              // 服务器入口文件
+├── src                                         // 源码目录
+│   ├── assets                                  // 静态资源目录
+│   │   └── css                                 // css文件
+│   │   └── images                              // 图片图标
+│   │   └── js                                  // js文件
 │   ├── components                              // 组件
-│   ├── page                                    // 页面
-│   │   └── Cart                                // 购物车
-│   │   └── Checkout                            // 提交订单
-│   │   └── Goods                               // 商品
-│   │       ├── goods                           // 商品列表
-│   │       ├── goodsDetails                    // 商品详情
-│   │   └── Home                                // 主页
-│   │   └── Login                               // 登陆
-│   │   └── Order                               // 订单
-│   │       ├── order                           // 商品列表
-│   │       ├── payment                         // 提交订单
-│   │       ├── paysuccess                      // 提交成功
-│   │   └── User                                // 个人中心
-│   │       ├── children
-│   │       │   ├── addressList                 // 地址列表
-│   │       │   ├── information                 // 个人信息
-│   │       │   └── order                       // 订单列表
-│   │   └── index.vue                           // 主页
-│   ├── store                                   // vuex的状态管理
-│   │   ├── action.js                           // 配置actions
-│   │   ├── index.js                            // 引用vuex，创建store
-│   │   ├── modules                             // store模块
-│   │   ├── mutation-types.js                   // 定义常量muations名
-│   │   └── mutations.js                        // 配置mutations
-│   ├── App.vue                                 // 页面入口文件
-│   ├── main.js                                 // 程序入口文件，加载各种公共组件
-├── favicon.ico                                 // 图标
+│   │   └── AddressList.vue                     // 地址列表
+│   │   └── Cart.vue                            // 购物车
+│   │   └── Classify.vue                        // 分类
+│   │   └── FindPassword.vue                    // 找回密码
+│   │   └── Header.vue                          // 头部组件
+│   │   └── Home.vue                            // 首页
+│   │   └── Login.vue                           // 登录
+│   │   └── Modal.vue                           // 弹窗
+│   │   └── Nav.vue                             // 导航组件
+│   │   └── NewAddress.vue                      // 新建地址
+│   │   └── Order.vue                           // 确认订单
+│   │   └── OrderDetail.vue                     // 订单详情
+│   │   └── OrderList.vue                       // 订单列表
+│   │   └── Product.vue                         // 产品详情
+│   │   └── Register.vue                        // 注册
+│   │   └── Success.vue                         // 支付成功
+│   ├── router                                  // 路由
+│   │   ├── index.js                            // 路由配置
+│   ├── store                                   // 状态管理
+│   │   ├── store.js                            // vuex配置
+│   ├── App.vue                                 // 页面入口文件
+│   ├── main.js                                 // 程序入口文件
 ├── index.html                                  // 入口html文件
 .
 
