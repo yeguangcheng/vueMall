@@ -10,8 +10,12 @@
         <h6>账号登录</h6>
       </div>
       <div class="login">
-        <input type="text" placeholder="您的账号" class="username" v-model="userName">
-        <input type="password" class="password" placeholder="您的密码" v-model="userPwd"><router-link to="/findPassword" class="forget">找回密码</router-link>
+        <div class="username">
+          <input type="text" placeholder="您的账号" v-model="userName">
+        </div>
+        <div class="password">
+          <input type="password" placeholder="您的密码" v-model="userPwd"><router-link to="/findPassword" class="forget">找回密码</router-link>
+        </div>
         <div class="errorTip" v-if="errorTip">{{tipsMsg}}</div>
         <div class="submit" @click="login()">登录</div>
         <p class="tips">没有账号请<router-link to="register" class="red">注册</router-link></p>
@@ -188,37 +192,38 @@ export default {
   line-height: 50px;
   height: 50px;
 }
-.login .username{
+.login .username input{
   height: 100px;
-  line-height: 100px;
-  border:none;
-  border-top: 1px solid #eee;
-  border-bottom: 1px solid #eee;
+  border: none;
   font-size: 28px;
   width: 670px;
-  margin:0 20px;
-  padding: 0 20px;
   outline: none;
 }
-.login .password{
+.login .username {
+  margin:4px 20px;
+  padding: 0 20px;
+}
+.login .password {
+  border-bottom: 1px solid #e1e1e1;
+  border-top: 1px solid #e1e1e1;
+  margin:0 20px;
+  padding: 0 20px;
+  -webkit-display: flex;
+  display: flex;
+}
+.login .password input{
   height: 100px;
-  line-height: 100px;
   border:none;
-  border-bottom: 1px solid #eee;
-  border-right: 1px solid #eee;
   font-size: 28px;
   width: 468px;
-  margin-left:20px;
-  padding: 0 20px;
   outline: none;
 }
 .login .forget{
-  display: inline-block;
-  border-bottom: 1px solid #eee;
+  display: block;
+  border-left: 1px solid #eee;
   height: 100px;
   line-height: 100px;
   width: 200px;
-  margin-right: 20px;
   font-size: 28px;
   text-align: center;
   color: #ff6700;

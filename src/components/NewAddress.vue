@@ -106,7 +106,9 @@ export default {
 }
 .newAddress li{
   height: 100px;
-  line-height: 100px;
+  display: flex;
+  -webkit-display: flex;
+  align-items: center;
   border-bottom: 1px solid #ccc;
   font-size: 30px;
   position: relative;
@@ -114,7 +116,7 @@ export default {
 .newAddress li input{
   height: 40px;
   font-size: 30px;
-  width: 500px;
+  width: 420px;
   outline: none;
   border: none;
 }

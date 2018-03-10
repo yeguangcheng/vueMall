@@ -311,10 +311,16 @@ export default {
   border-radius: 50%;
 }
 .cart-list .product-pic{
-  width: 180px;
-  height: 180px;
+  width: 202px;
+  height: 202px;
   border: 1px solid #ccc;
+  -webkit-border-radius: 5px;
   border-radius: 5px;
+}
+.cart-list .product-pic a{
+  display: block;
+  width: 200px;
+  height: 200px;
 }
 .cart-list .product-pic img{
   width: 100%;
@@ -339,15 +345,18 @@ export default {
 }
 .cart-list .count {
   display: flex;
-  border: 1px solid #ddd;
-  background: #f4f4f4 ;
-  width: 184px;
+  -webkit-display: flex;
+  align-items: center;
+  height: 66px;
+  margin-top: 12px;
 }
 .cart-list .count .reduce{
-  width: 51px;
-  height: 51px;
+  width: 60px;
+  height: 60px;
   background: url('src/assets/images/reduce.png') no-repeat center center;
-  background-size: 60% 60%;
+  background-size: 60%;
+  border: 1px solid #ccc;
+  border-radius: 3px;
 }
 .cart-list .count .reduce.empty,.cart-list .count .add.empty{
   opacity: 0.3;
@@ -355,17 +364,19 @@ export default {
 .cart-list .count input {
   border: none;
   outline: none;
-  width: 80px;
-  height: 50px;
+  width: 70px;
+  height: 58px;
   line-height: 50px;
   font-size: 30px;
   text-align: center;
 }
 .cart-list .count .add{
-  width: 51px;
-  height: 51px;
+  width: 60px;
+  height: 60px;
   background: url('src/assets/images/add.png') no-repeat center center;
-  background-size: 60% 60%;
+  background-size: 60%;
+  border: 1px solid #ccc;
+  border-radius: 3px;
 }
 .cart-list .product-title .delete{
   width: 70px;
