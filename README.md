@@ -25,15 +25,15 @@ __注:为了更好的体验,需要自己注册一个账号__
 
     IDE: Visual Studio Code
     框架: Vue2.0
-    技术栈: vuex 、vue-router 、vue-cli 、ES6 、flexible.js 、axios、 webpack3.0
+    技术栈: vuex 、vue-router 、vue-cli 、ES6 、flexible.js 、axios、 webpack3.0
 
 后端部分:
 
     语言环境: NodeJs
     框架: express
     数据库: MongoDB / mongoose
-    数据库管理: Robo 3T
-    数据加密: md5
+    数据库管理: Robo 3T
+    数据加密: md5
 
 
 ## 关于开发环境
